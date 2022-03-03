@@ -1,5 +1,4 @@
-from Models import *
-from Dao import *
+
 from novovarejo import *
 from github import Github
 from flask import jsonify, Flask, render_template, send_file, make_response, url_for, Response, redirect, request
