@@ -12,12 +12,11 @@ def index():
     return render_template('homepage.html', PageTitle='Landing Page')
 
 
-access_token = "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"
-g = Github(access_token)
+
 
 #filtro 1:
 
-access_token = "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"
+access_token = "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"
 g = Github(access_token)
 
 
@@ -62,7 +61,7 @@ class FiltroLinguagem:
     def filtroLinguagem(self):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
@@ -85,7 +84,7 @@ class OrdenarAlfabeticamente:
     def ordenaAlfa(self):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
@@ -122,7 +121,7 @@ class UltimoCommit:
     def achaData(self):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
@@ -166,7 +165,7 @@ class ControllerFiltro:
 
 
 def filtroData( dataInicio1, dataTermino1):     #criação do repo
-    access_token = "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"
+    access_token = "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"
     g = Github(access_token)
 
     dataInicio1 = datetime.strptime(dataInicio1, '%d/%m/%Y').date()
@@ -215,7 +214,7 @@ class FiltroLinguagem:
     def filtroLinguagem(self):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
@@ -239,7 +238,7 @@ class OrdenarAlfabeticamente:
     def ordenaAlfa(self):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
@@ -278,7 +277,7 @@ class UltimoCommit:
     def achaData(self, repo):
         base_url = ('https://api.github.com/{}')
         path = 'users/viniyan'
-        token = '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'
+        token = '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'
         headers = {'authorization': 'Bearer {}'.format(token)}
         response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
 
