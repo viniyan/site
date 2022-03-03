@@ -1,5 +1,4 @@
 
-from novovarejo import *
 from github import Github
 from flask import jsonify, Flask, render_template, send_file, make_response, url_for, Response, redirect, request
 from datetime import datetime
@@ -15,6 +14,156 @@ def index():
 
 access_token = "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"
 g = Github(access_token)
+
+#filtro 1:
+
+access_token = "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"
+g = Github(access_token)
+
+
+
+class FiltroData:
+    def filtroData(self, dataInicio1, dataTermino1):     #criação do repo
+        dataInicio1 = datetime.strptime(dataInicio1, '%d/%m/%Y').date()
+        dataTermino1 = datetime.strptime(dataTermino1, '%d/%m/%Y').date()
+        repos = [_ for _ in g.get_user().get_repos()]
+        for repo in repos:
+            x = repo.created_at
+            y = datetime.date(x)
+            if dataInicio1 < y and dataTermino1 > y:
+                print(repo)
+            elif dataInicio1 > y and dataTermino1 < y:
+                print('Não há repositórios publicados neste período' )
+
+#x = FiltroData
+#x.filtroData(x, '01/01/2021', '28/02/2022')
+###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#filtro 2:
+
+class FiltroConteudo:
+    def filtroConteudoRepo(self, nomeRepo):       #arquivos do repo
+        repo = g.get_user().get_repos()
+        repos = g.get_repo('viniyan/'+nomeRepo)
+        for i in repo:
+            x = str(i)
+            if nomeRepo in x:
+                content = repos.get_contents('')
+                for i in content:
+                    print(i)
+            else:
+                None
+
+#x = FiltroConteudo
+#x.filtroConteudoRepo(x, 'DeepLearning')
+###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#filtro 3:
+
+class FiltroLinguagem:
+    def filtroLinguagem(self):
+        base_url = ('https://api.github.com/{}')
+        path = 'users/viniyan'
+        token = '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'
+        headers = {'authorization': 'Bearer {}'.format(token)}
+        response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
+
+        api_base_url = 'https://api.github.com'
+        owner = 'viniyan'
+        repo = 'YEarn'
+        endpoint_path = f'/repos/{owner}/{repo}/languages'
+        endpoint = f'{api_base_url}{endpoint_path}'
+        r = requests.get(endpoint)
+        print(r.text)
+
+x = FiltroLinguagem
+x.filtroLinguagem(x)
+
+
+###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Ordenação alfabética:
+
+class OrdenarAlfabeticamente:
+    def ordenaAlfa(self):
+        base_url = ('https://api.github.com/{}')
+        path = 'users/viniyan'
+        token = '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'
+        headers = {'authorization': 'Bearer {}'.format(token)}
+        response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
+
+
+
+        api_base_url = 'https://api.github.com/users/viniyan'
+        endpoint_path = '/repos'
+        endpoint = f'{api_base_url}{endpoint_path}'
+        r = requests.get(endpoint, data={'sort': 'full_name', 'per_page': 100})
+
+        x = r.text
+        json_completo = json.loads(x)
+        #pprint.pprint(json_completo)
+        repo1 = json_completo[0]
+        repo2 = json_completo[1]
+        repo3 = json_completo[2]
+        repo4 = json_completo[3]
+        repo5 = json_completo[4]
+        nome1 = repo1['name']
+        nome2 = repo2['name']
+        nome3 = repo3['name']
+        nome4 = repo4['name']
+        nome5 = repo5['name']
+        nomes = [nome1, nome2, nome3, nome4, nome5]
+        ordenado = sorted(nomes, key= str.casefold)
+        print(ordenado)
+
+#x = OrdenarAlfabeticamente
+#x.ordenaAlfa(x)
+###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Data do último commit:
+
+class UltimoCommit:
+    def achaData(self):
+        base_url = ('https://api.github.com/{}')
+        path = 'users/viniyan'
+        token = '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'
+        headers = {'authorization': 'Bearer {}'.format(token)}
+        response = requests.get(base_url.format(path), headers=headers)  # autenticar o github
+
+        api_base_url = 'https://api.github.com'
+        owner = 'viniyan'
+        repo = input('Digite o nome do repositório que deseja consultar:')
+
+        endpoint_path = f'/repos/{owner}/{repo}/commits'
+        endpoint = f'{api_base_url}{endpoint_path}'
+
+        r = requests.get(endpoint)
+        print(r.status_code)
+        x = r.text
+        json_completo = json.loads(x)
+        json_dicts = json_completo[0]
+        dict_values = json_dicts.values()
+        for i in dict_values:
+            if type(i) == dict:
+                x = i.values()
+                for k in x:
+                    if type(k) == dict:
+                        y = list(k.values())
+                        data = y[2]
+                        print(data)
+###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Pesquisa simples:
+
+class ControllerFiltro:
+    def filtroNome(self, nome):    #nome do repo
+        repos = [_ for _ in g.get_user().get_repos(nome)]
+        for repo in repos:
+            x = str(repo)
+            if nome in x:
+                print(x.replace('Repository(full_name=', ''))
+            else:
+                print('Não há repositórios com esse nome')
+
+#x = ControllerFiltro
+#x.filtroNome(x, nome= 'Deep')
+
+
 
 def filtroData( dataInicio1, dataTermino1):     #criação do repo
     access_token = "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"
