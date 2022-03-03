@@ -1,5 +1,4 @@
-from Models import *
-from Dao import *
+
 from github import Github
 from flask import jsonify, Flask
 from datetime import datetime
