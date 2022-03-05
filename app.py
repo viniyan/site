@@ -184,22 +184,22 @@ x.filtroNome(x, 'De')
 def handle_data():
     projectpath = request.form['date']
 
-        def filtroData(DATA):
-        api_base_url = 'https://api.github.com'
-        date = DATA
-        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
-        endpoint = f'{endpoint_path}'
-        r = requests.get(endpoint)
-        x = json.loads(r.text)
-        a = []
+    def filtroData(DATA):
+    api_base_url = 'https://api.github.com'
+    date = DATA
+    endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
+    endpoint = f'{endpoint_path}'
+    r = requests.get(endpoint)
+    x = json.loads(r.text)
+    a = []
 
-        y = x['items']
-        for i in y:
-            for z in i:
-                k = i['full_name']
-                a.append(k)
+    y = x['items']
+    for i in y:
+        for z in i:
+            k = i['full_name']
+            a.append(k)
 
-        return a
+    return a
     
     projectpath = request.form['date']
     
