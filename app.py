@@ -48,7 +48,7 @@ class Conteudo:
     def filtroConteudoRepo(self, nomeArquivo):
         api_base_url = 'https://api.github.com'
         nome = nomeArquivo
-        endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:path'
+        endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:file'
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
@@ -219,7 +219,7 @@ def handle_data():
 def filtroConteudoRepo(nomeArquivo):
     api_base_url = 'https://api.github.com'
     nome = nomeArquivo
-    endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:path'
+    endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:file'
     endpoint = f'{endpoint_path}'
     r = requests.get(endpoint)
     x = json.loads(r.text)
