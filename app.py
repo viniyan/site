@@ -21,21 +21,28 @@ g = Github(access_token)
 
 
 
-class FiltroData:
-    def filtroData(self, dataInicio1, dataTermino1):     #criação do repo
-        dataInicio1 = datetime.strptime(dataInicio1, '%d/%m/%Y').date()
-        dataTermino1 = datetime.strptime(dataTermino1, '%d/%m/%Y').date()
-        repos = [_ for _ in g.get_user().get_repos()]
-        for repo in repos:
-            x = repo.created_at
-            y = datetime.date(x)
-            if dataInicio1 < y and dataTermino1 > y:
-                print(repo)
-            elif dataInicio1 > y and dataTermino1 < y:
-                print('Não há repositórios publicados neste período' )
+class Data:
+    def filtroData(self, DATA):
+        api_base_url = 'https://api.github.com'
+        date = DATA
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
+        endpoint = f'{endpoint_path}'
+        r = requests.get(endpoint)
+        x = json.loads(r.text)
 
-#x = FiltroData
-#x.filtroData(x, '01/01/2021', '28/02/2022')
+
+        y = x['items']
+        #print(len(y))
+        #pprint.pprint(y[len(y)-1])
+        #pprint.pprint(y)
+        for i in y:
+            #pprint.pprint(i)
+            for z in i:
+                k = i['full_name']
+                print(k)
+
+#x = Data
+#x.filtroData(x, '2022-02-01')
 ###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #filtro 2:
 
@@ -150,45 +157,50 @@ class UltimoCommit:
 #Pesquisa simples:
 
 class ControllerFiltro:
-    def filtroNome(self, nome):    #nome do repo
-        repos = [_ for _ in g.get_user().get_repos(nome)]
-        for repo in repos:
-            x = str(repo)
-            if nome in x:
-                print(x.replace('Repository(full_name=', ''))
-            else:
-                print('Não há repositórios com esse nome')
-
+    def filtroNome(self, NOME):    #nome do repo
+        api_base_url = 'https://api.github.com'
+        nome = NOME
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+{nome}%20in:name'
+        endpoint = f'{endpoint_path}'
+        r = requests.get(endpoint)
+        x = json.loads(r.text)
+        y = x['items']
+        for i in y:
+            for z in i:
+                k = i['full_name']
+                print(k)
+                
 #x = ControllerFiltro
-#x.filtroNome(x, nome= 'Deep')
+#x.filtroNome(x, 'De')
 
 
 
-def filtroData( dataInicio1, dataTermino1):     #criação do repo
-    access_token = "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"
-    g = Github(access_token)
 
-    dataInicio1 = datetime.strptime(dataInicio1, '%d/%m/%Y').date()
-    dataTermino1 = datetime.strptime(dataTermino1, '%d/%m/%Y').date()
-    repos = [_ for _ in g.get_user().get_repos()]
-    for repo in repos:
-        x = repo.created_at
-        y = datetime.date(x)
-        if dataInicio1 < y and dataTermino1 > y:
-            print(str(repo))
-            return str(repo)
-        elif dataInicio1 > y and dataTermino1 < y:
-            print('Não há repositórios publicados neste período' )
-            return 'Não há repositórios publicados neste período'
 
 @app.route('/handle_data', methods=['POST'])
 def handle_data():
-
     projectpath = request.form['date']
-    data1 = projectpath[1:11]
-    data2 = projectpath[15:25]
-    return str(filtroData(data1, data2))
 
+    def filtroData(DATA):
+        api_base_url = 'https://api.github.com'
+        date = DATA
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
+        endpoint = f'{endpoint_path}'
+        r = requests.get(endpoint)
+        x = json.loads(r.text)
+
+        y = x['items']
+        for i in y:
+            for z in i:
+                k = i['full_name']
+                print(k)
+                return k
+    projectpath = request.form['date']
+    
+    return str(filtroData(projectpath))
+    
+#x = Data
+#x.filtroData(x, '2022-02-01')
 
 def filtroConteudoRepo(nomeRepo):       #arquivos do repo
     repo = g.get_user().get_repos()
@@ -312,14 +324,22 @@ def handle_last():
 
 
 class ControllerFiltro:
-    def filtroNome(self, nome):    #nome do repo
-        repos = [_ for _ in g.get_user().get_repos(nome)]
-        for repo in repos:
-            x = str(repo)
-            if nome in x:
-                print(x.replace('Repository(full_name=', ''))
-            else:
-                print('Não há repositórios com esse nome')
+    def filtroNome(self, NOME):    #nome do repo
+        api_base_url = 'https://api.github.com'
+        nome = NOME
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+{nome}%20in:name'
+        endpoint = f'{endpoint_path}'
+        r = requests.get(endpoint)
+        x = json.loads(r.text)
+        y = x['items']
+        for i in y:
+            for z in i:
+                k = i['full_name']
+                print(k)
+
+
+#x = ControllerFiltro
+#x.filtroNome(x, 'De')
 
 @app.route('/handle_name', methods=['POST'])
 def handle_name():
