@@ -29,17 +29,15 @@ class Data:
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
-
+        a = []
 
         y = x['items']
-        #print(len(y))
-        #pprint.pprint(y[len(y)-1])
-        #pprint.pprint(y)
         for i in y:
-            #pprint.pprint(i)
             for z in i:
                 k = i['full_name']
-                print(k)
+                a.append(k)
+
+        return a
 
 #x = Data
 #x.filtroData(x, '2022-02-01')
@@ -164,14 +162,19 @@ class ControllerFiltro:
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
+        a = []
+
         y = x['items']
         for i in y:
             for z in i:
                 k = i['full_name']
-                print(k)
-                
-#x = ControllerFiltro
-#x.filtroNome(x, 'De')
+                a.append(k)
+
+        print(a)
+        return a
+
+x = ControllerFiltro
+x.filtroNome(x, 'De')
 
 
 
@@ -181,20 +184,23 @@ class ControllerFiltro:
 def handle_data():
     projectpath = request.form['date']
 
-    def filtroData(DATA):
+        def filtroData(DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
         endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
+        a = []
 
         y = x['items']
         for i in y:
             for z in i:
                 k = i['full_name']
-                print(k)
-                return k
+                a.append(k)
+
+        return a
+    
     projectpath = request.form['date']
     
     return str(filtroData(projectpath))
@@ -324,19 +330,22 @@ def handle_last():
 
 
 class ControllerFiltro:
-    def filtroNome(self, NOME):    #nome do repo
+    def filtroNome(self, NOME):  # nome do repo
         api_base_url = 'https://api.github.com'
         nome = NOME
         endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+{nome}%20in:name'
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
+        a = []
+
         y = x['items']
         for i in y:
             for z in i:
                 k = i['full_name']
-                print(k)
+                a.append(k)
 
+        return a
 
 #x = ControllerFiltro
 #x.filtroNome(x, 'De')
