@@ -78,7 +78,7 @@
 
             <form action="{{ url_for('handle_content') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Digite o nome de um arquivo dentro de um repositório que deseja pesquisar</label>
+                    <label for="formGroupExampleInput" class="form-label">Digite o nome de um arquivo dentro de um repositório que deseja pesquisar (se o arquivo não existir, retornará uma lista vazia)</label>
                     <input type="text" name='content' class="form-control" id="formGroupExampleInput" placeholder="Nome do arquivo">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -86,7 +86,7 @@
 
             <form action="{{ url_for('handle_language') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Ver as linguagens presentes nos repositórios, e seus respectivos tamanhos em bytes</label>
+                    <label for="formGroupExampleInput" class="form-label">Ver as linguagens presentes nos repositórios, e seus respectivos tamanhos em bytes. Não é necessário digitar nada no input.</label>
                     <input type="text" name='language' class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
                 </div>
                 <button type="submit" class="btn btn-primary">Clique aqui</button>
@@ -94,7 +94,7 @@
 
             <form action="{{ url_for('handle_alfa') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Ver os repositórios ordenados alfabeticamente</label>
+                    <label for="formGroupExampleInput" class="form-label">Ver os repositórios ordenados alfabeticamente. Não é necessário digitar nada no input.</label>
                     <input type="text" name='alfa' class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -102,7 +102,7 @@
 
             <form action="{{ url_for('handle_last') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Digite o nome do repositório sobre o qual deseja consultar a data do último commit</label>
+                    <label for="formGroupExampleInput" class="form-label">Digite o nome do repositório sobre o qual deseja consultar a data do último commit (se o nome do repositório estiver incorreto, retornará erro interno do servidor)</label>
                     <input type="text" name='last' class="form-control" id="formGroupExampleInput" placeholder="Nome do repositório">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
