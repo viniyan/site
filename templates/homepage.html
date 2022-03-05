@@ -78,7 +78,7 @@
 
             <form action="{{ url_for('handle_content') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Digite o nome de uma string dentro de um arquivo de um repositório que deseja pesquisar (se a string em nenhum arquivo não existir, retornará uma lista vazia)</label>
+                    <label for="formGroupExampleInput" class="form-label">Digite o nome de uma string dentro de um arquivo de um repositório que deseja pesquisar (se a string em nenhum arquivo não existir, retornará uma lista vazia; senão retorna uma lista dos repositórios que contêm a string)</label>
                     <input type="text" name='content' class="form-control" id="formGroupExampleInput" placeholder="Nome do arquivo">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
