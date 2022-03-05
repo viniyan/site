@@ -22,7 +22,7 @@ g = Github(access_token)
 
 
 class Data:
-    def filtroData(self, DATA):
+       def filtroData(self, DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
         endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:>{date}'
@@ -37,6 +37,7 @@ class Data:
                 k = i['full_name']
                 a.append(k)
 
+        print(a)
         return a
 
 #x = Data
@@ -192,7 +193,7 @@ x.filtroNome(x, 'De')
 def handle_data():
     projectpath = request.form['date']
 
-    def filtroData(DATA):
+        def filtroData(self, DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
         endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:>{date}'
@@ -207,6 +208,7 @@ def handle_data():
                 k = i['full_name']
                 a.append(k)
 
+        print(a)
         return a
 
     projectpath = request.form['date']
