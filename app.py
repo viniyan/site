@@ -293,12 +293,14 @@ class OrdenarAlfabeticamente:
         repo3 = json_completo[2]
         repo4 = json_completo[3]
         repo5 = json_completo[4]
+        repo6 = json_completo[5]
         nome1 = repo1['name']
         nome2 = repo2['name']
         nome3 = repo3['name']
         nome4 = repo4['name']
         nome5 = repo5['name']
-        nomes = [nome1, nome2, nome3, nome4, nome5]
+        nome6 = repo6['name']
+        nomes = [nome1, nome2, nome3, nome4, nome5, nome6]
         ordenado = sorted(nomes, key= str.casefold)
         print(ordenado)
         return ordenado
