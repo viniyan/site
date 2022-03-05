@@ -25,7 +25,7 @@ class Data:
     def filtroData(self, DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
-        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:>{date}'
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
@@ -195,7 +195,7 @@ def handle_data():
     def filtroData(DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
-        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:%3E{date}'
+        endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:>{date}'
         endpoint = f'{endpoint_path}'
         r = requests.get(endpoint)
         x = json.loads(r.text)
