@@ -61,7 +61,7 @@
                         <li class="nav-item">
                             <a class="nav-link px-3" href="#" tabindex="-1">LinkedIn</a>
                         </li>
-                        
+
 
                 </div>
             </div>
@@ -70,16 +70,16 @@
         <div class="container">
             <form action="{{ url_for('handle_data') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Insira uma data de início e uma data de término no formato 'dd/mm/aaaa','dd/mm/aaaa' para a consulta.</label>
-                    <input type="text" name="date" class="form-control" id="formGroupExampleInput" placeholder="'dd/mm/aaaa','dd/mm/aaaa'">
+                    <label for="formGroupExampleInput" class="form-label">Insira uma data de início no formato 'aaaa-mm-dd' para consultar os repositórios alterados após essa data</label>
+                    <input type="text" name="date" class="form-control" id="formGroupExampleInput" placeholder="'aaaa-mm-dd'">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
             <form action="{{ url_for('handle_content') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Insira o nome do repositório sobre o qual deseja consultar o conteúdo.</label>
-                    <input type="text" name='content' class="form-control" id="formGroupExampleInput" placeholder="Nome do repositório">
+                    <label for="formGroupExampleInput" class="form-label">Digite o nome de um arquivo dentro de um repositório que deseja pesquisar</label>
+                    <input type="text" name='content' class="form-control" id="formGroupExampleInput" placeholder="Nome do arquivo">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -89,7 +89,7 @@
                     <label for="formGroupExampleInput" class="form-label">Ver as linguagens presentes nos repositórios, e seus respectivos tamanhos em bytes</label>
                     <input type="text" name='language' class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Clique aqui</button>
             </form>
 
             <form action="{{ url_for('handle_alfa') }}" method="post">
@@ -102,7 +102,7 @@
 
             <form action="{{ url_for('handle_last') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Digite o nome do repositório sobre o qual deseja consultar o último commit</label>
+                    <label for="formGroupExampleInput" class="form-label">Digite o nome do repositório sobre o qual deseja consultar a data do último commit</label>
                     <input type="text" name='last' class="form-control" id="formGroupExampleInput" placeholder="Nome do repositório">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -110,25 +110,12 @@
 
             <form action="{{ url_for('handle_name') }}" method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Digite um nome que deseja pesquisar</label>
-                    <input type="text" name='name' class="form-control" id="formGroupExampleInput" placeholder="Digite um nome">
+                    <label for="formGroupExampleInput" class="form-label">Digite um nome que deseja pesquisar (é aconselhável digitar o nome completo do repositório).</label>
+                    <input type="text" name='name' class="form-control" id="formGroupExampleInput" placeholder="Digite o nome de um repositório">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
   </body>
 </html>
