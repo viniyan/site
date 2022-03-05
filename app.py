@@ -44,21 +44,29 @@ class Data:
 ###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #filtro 2:
 
-class FiltroConteudo:
-    def filtroConteudoRepo(self, nomeRepo):       #arquivos do repo
-        repo = g.get_user().get_repos()
-        repos = g.get_repo('viniyan/'+nomeRepo)
-        for i in repo:
-            x = str(i)
-            if nomeRepo in x:
-                content = repos.get_contents('')
-                for i in content:
-                    print(i)
-            else:
-                None
+class Conteudo:
+    def filtroConteudoRepo(self, nomeArquivo):
+        api_base_url = 'https://api.github.com'
+        nome = nomeArquivo
+        endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:path'
+        endpoint = f'{endpoint_path}'
+        r = requests.get(endpoint)
+        x = json.loads(r.text)
+        a = []
 
-#x = FiltroConteudo
-#x.filtroConteudoRepo(x, 'DeepLearning')
+
+        y = x['items']
+        for i in y:
+
+           for z in i:
+               k = i['name']
+               a.append(k)
+
+        print(a)
+        return a
+    
+#x = Conteudo
+#x.filtroConteudoRepo(x, 'app')
 ###-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #filtro 3:
 
@@ -208,15 +216,25 @@ def handle_data():
 #x = Data
 #x.filtroData(x, '2022-02-01')
 
-def filtroConteudoRepo(nomeRepo):       #arquivos do repo
-    repo = g.get_user().get_repos()
-    repos = g.get_repo('viniyan/'+nomeRepo)
-    for i in repo:
-        x = str(i)
-        if nomeRepo in x:
-            content = repos.get_contents('')
-            for i in content:
-                print(str(i))
+def filtroConteudoRepo(nomeArquivo):
+    api_base_url = 'https://api.github.com'
+    nome = nomeArquivo
+    endpoint_path = f'https://api.github.com/search/code?q=user:viniyan+language:python+{nome}%20in:path'
+    endpoint = f'{endpoint_path}'
+    r = requests.get(endpoint)
+    x = json.loads(r.text)
+    a = []
+
+
+    y = x['items']
+    for i in y:
+
+       for z in i:
+           k = i['name']
+           a.append(k)
+
+    print(a)
+    return a
 
 
 @app.route('/handle_content', methods=['POST'])
