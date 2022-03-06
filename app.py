@@ -193,7 +193,7 @@ x.filtroNome(x, 'De')
 def handle_data():
     projectpath = request.form['date']
 
-    def filtroData(self, DATA):
+    def filtroData(DATA):
         api_base_url = 'https://api.github.com'
         date = DATA
         endpoint_path = f'https://api.github.com/search/repositories?q=user:viniyan+created:>{date}'
